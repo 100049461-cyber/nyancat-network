@@ -1,0 +1,18 @@
+{
+  "name": "nyancat-network (GNU++23)",
+  "build": { "dockerfile": "Dockerfile", "context": ".." },
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.cpptools", "ms-vscode.cmake-tools"],
+      "settings": {
+        "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+        "cmake.useCMakePresets": "always"
+      }
+    }
+  },
+  "postCreateCommand": "cmake --preset dev && cmake --build --preset dev",
+  "portsAttributes": {
+    "2323": { "label": "Local nyancat TCP server", "onAutoForward": "ignore" }
+  }
+}

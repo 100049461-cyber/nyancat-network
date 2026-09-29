@@ -1,0 +1,25 @@
+name: Build and check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  codespace-build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build the development image
+        run: docker build -t nyan-dev -f .devcontainer/Dockerfile .
+      - name: Build with GNU++23, run student tests, check the upstream server
+        run: |
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -v "$PWD:/workspace" -w /workspace nyan-dev \
+            bash -c 'cmake --preset dev && cmake --build --preset dev && ctest --preset dev && python3 scripts/check-server.py'
