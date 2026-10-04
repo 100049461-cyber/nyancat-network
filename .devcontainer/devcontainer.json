@@ -4,10 +4,27 @@
   "remoteUser": "vscode",
   "customizations": {
     "vscode": {
-      "extensions": ["ms-vscode.cpptools", "ms-vscode.cmake-tools"],
+      "extensions": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "EditorConfig.EditorConfig"
+      ],
       "settings": {
-        "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
-        "cmake.useCMakePresets": "always"
+        "C_Cpp.intelliSenseEngine": "disabled",
+        "clangd.path": "/usr/bin/clangd-18",
+        "clangd.arguments": [
+          "--background-index",
+          "--clang-tidy",
+          "--query-driver=/usr/bin/g++"
+        ],
+        "cmake.useCMakePresets": "always",
+        "[cpp]": {
+          "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+          "editor.formatOnSave": true,
+          "editor.insertSpaces": true,
+          "editor.tabSize": 4
+        }
       }
     }
   },

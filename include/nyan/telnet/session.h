@@ -13,4 +13,4 @@ public:
 private:
     // TODO: Track local and remote option state separately.
 };
-}
+} // namespace nyan::telnet

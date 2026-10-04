@@ -65,17 +65,25 @@ keeps your work separate until it is ready to merge. Keep `main` for merged work
 
 ## 3. Change code and check it
 
-Read [the shared design](docs/design.md), implement your issue, and run:
+Read [the shared design](docs/design.md) and [our C++ style](docs/style.md),
+implement your issue, and run:
 
 ```bash
 cmake --preset dev
+python3 scripts/lint.py --fix
 cmake --build --preset dev
 ctest --preset dev
 ```
 
-The first command configures the build, the second compiles, and the third runs
-registered tests. The initial scaffold has no client tests yet. Add meaningful
-tests with your implementation using [tests/README.md](tests/README.md).
+These commands configure the build, format/check C++ style, compile, and run
+registered tests. `--fix` applies formatting; naming errors need manual fixes.
+CI runs `python3 scripts/lint.py` without changing files. The initial scaffold
+has no client tests yet. Add meaningful tests with your implementation using
+[tests/README.md](tests/README.md).
+
+Clangd provides completion, diagnostics, and formatting on save in Codespaces.
+If you created your Codespace before this tooling was added, use **Rebuild
+Container** from the command palette once to install it.
 
 Use the Linux manual in the terminal when a reference names a function:
 
@@ -155,6 +163,7 @@ result, and remove the `<<<<<<<`, `=======`, and `>>>>>>>` markers. Then:
 git add path/to/resolved-file.cpp
 git commit
 cmake --preset dev
+python3 scripts/lint.py --fix
 cmake --build --preset dev
 ctest --preset dev
 git push

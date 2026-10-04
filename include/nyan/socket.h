@@ -17,4 +17,4 @@ public:
 private:
     int fd_ = -1;
 };
-}
+} // namespace nyan

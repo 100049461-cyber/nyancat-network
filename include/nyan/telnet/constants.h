@@ -24,4 +24,4 @@ inline constexpr Byte kNewEnvironment = 39;
 // Terminal-type subcommands: RFC 1091, section 2.
 inline constexpr Byte kIs = 0;
 inline constexpr Byte kSend = 1;
-}
+} // namespace nyan::telnet

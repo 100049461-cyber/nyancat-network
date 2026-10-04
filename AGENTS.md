@@ -3,6 +3,10 @@
 This is a club learning project. Implement the requested issue; leave other
 exercises for their owners. Use GNU++23, CMake, and the Linux Codespace.
 Read CONTRIBUTING.md and docs/design.md before changing an interface.
+Follow docs/style.md: four spaces, snake_case functions/variables, PascalCase
+types, kCamelCase constants, type-aligned pointers, #pragma once, and namespace
+closing comments. Run `python3 scripts/lint.py` for C++ changes; `--fix` applies
+formatting only and reports naming issues. Use the configured LLVM 18 tools.
 
 Do not write tautological tests that merely repeat the implementation, assert a
 fixture's assigned value, or reproduce its logic in expected results. Tests must

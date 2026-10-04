@@ -10,4 +10,4 @@ struct Event {
     Byte option = 0;  // Used by negotiation and subnegotiation events.
     Bytes payload;    // Data bytes or unescaped subnegotiation body (no option byte).
 };
-}
+} // namespace nyan::telnet

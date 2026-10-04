@@ -4,6 +4,7 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
        g++ gcc make cmake ninja-build gdb git ca-certificates \
        socat inetutils-telnet python3 man-db manpages-dev \
+       clangd-18 clang-format-18 clang-tidy-18 \
     && rm -rf /var/lib/apt/lists/*
 
 # Build the actual upstream server at a fixed revision. Keep its source/license.

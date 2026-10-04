@@ -10,6 +10,21 @@ permissions:
   contents: read
 
 jobs:
+  lint:
+    name: C++ lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install the project's lint tool versions
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends clang-format-18 clang-tidy-18
+      - name: Configure compile commands and header checks
+        run: cmake --preset dev
+      - name: Check formatting and identifier names
+        run: python3 scripts/lint.py
+
   codespace-build:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -23,3 +38,9 @@ jobs:
             --user "$(id -u):$(id -g)" \
             -v "$PWD:/workspace" -w /workspace nyan-dev \
             bash -c 'cmake --preset dev && cmake --build --preset dev && ctest --preset dev && python3 scripts/check-server.py'
+      - name: Check clangd with the GNU++23 compilation database
+        run: |
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -v "$PWD:/workspace" -w /workspace nyan-dev \
+            clangd-18 --check=include/nyan/telnet/constants.h --query-driver=/usr/bin/g++ --log=error
