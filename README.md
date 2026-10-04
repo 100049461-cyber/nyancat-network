@@ -19,18 +19,21 @@ Running `nyancat-client` currently prints a reminder and exits with status 1.
 4. Pick an unclaimed task in the [roadmap](docs/roadmap.md). Comment that you want
    it; a club organizer can assign you. Check its prerequisites before coding.
 
-The Codespace includes **GCC 13+ using `-std=gnu++23`, CMake, Ninja, GDB, socat,
-telnet, and the original nyancat server**. Use its integrated terminal. Linux is
+The Codespace includes **GCC 13+ using `-std=gnu++23`, CMake, Ninja, GDB,
+clangd/clang-format/clang-tidy 18, socat, telnet, and the original nyancat server**.
+Use its integrated terminal. Linux is
 our supported development platform; Windows and macOS users should use Codespaces.
 
 ```bash
 cmake --preset dev
+python3 scripts/lint.py
 cmake --build --preset dev
 ctest --preset dev
 ```
 
 CTest initially reports no tests. Each implementation PR adds useful checks for
 its own behavior; see [tests/README.md](tests/README.md).
+Read [our C++ style guide](docs/style.md) for naming, formatting, and editor setup.
 
 ## See the target behavior
 
@@ -73,6 +76,7 @@ setup without relying on the student client.
 | `src/telnet/` | Wire encoding, incremental parsing, option negotiation |
 | `tests/` | Component and integration checks added with the work |
 | [docs/design.md](docs/design.md) | Shared contracts and completion criteria |
+| [docs/style.md](docs/style.md) | Project style, formatting, and clangd setup |
 | [docs/roadmap.md](docs/roadmap.md) | Tasks, difficulty, and dependencies |
 | `.devcontainer/` | Default Linux development environment |
 | `.github/workflows/ci.yml` | Build the same image and run checks on PRs |
