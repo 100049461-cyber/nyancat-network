@@ -14,4 +14,4 @@ struct Options {
 // args excludes argv[0]. Invalid input throws std::invalid_argument.
 Options parse_options(std::span<const std::string_view> args);
 std::string_view usage();
-}
+} // namespace nyan

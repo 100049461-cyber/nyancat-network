@@ -6,4 +6,4 @@
 namespace nyan::telnet {
 Bytes terminal_type_reply(); // Codespaces: xterm-256color.
 Bytes window_size_reply(WindowSize size);
-}
+} // namespace nyan::telnet

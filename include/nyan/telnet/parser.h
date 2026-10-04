@@ -15,4 +15,4 @@ public:
 private:
     // TODO: Choose persistent parsing state. TCP reads are not messages.
 };
-}
+} // namespace nyan::telnet
